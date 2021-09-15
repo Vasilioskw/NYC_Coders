@@ -11,6 +11,13 @@
 // Input: nums = [0]
 // Output: [0]
 
+// sudo code logic
+    // while le < ro
+    //if nums[l] % 2 === 0 => l++
+    //if nums[2] % 2 !== 0 => r--
+    // temp = nums[l]; nums[l] = nums[r]; nums[r] =temp
+    
+
 /**
  * @param {number[]} nums
  * @return {number[]}
@@ -35,8 +42,33 @@
 };
 
 
-    // while le < ro
-    //if nums[l] % 2 === 0 => l++
-    //if nums[2] % 2 !== 0 => r--
-    // temp = nums[l]; nums[l] = nums[r]; nums[r] =temp
-    
+    ///
+
+
+    // Better solution by Devs
+
+    var sortArrayByParity = function(nums) {
+        let first = 0;
+        let second = nums.length - 1;
+        const swap = (a, b) => {
+            let temp = nums[a];
+            nums[a] = nums[b];
+            nums[b] = temp;
+        }
+        
+        while(first < second){
+            if(nums[first] % 2 !== 0 && nums[second] % 2 === 0){
+                swap(first, second);
+                first++;
+                second--;
+            } else if(nums[first] % 2 === 0 && nums[second] % 2 === 0){
+                first++;
+            } else if(nums[first] % 2 === 0 && nums[second] % 2 !== 0){
+                first++;
+                second--;
+            } else {
+                second--;
+            }
+        }
+        return nums;
+    };
